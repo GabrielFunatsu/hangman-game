@@ -202,5 +202,5 @@ class GameController extends Match {
   }
 }
 
-const gameMenu = new GameController("taça", "campeonato");
-gameMenu.showMenu();
+const game = new GameController("taça", "campeonato");
+game.showMenu();
