@@ -11,7 +11,7 @@ class Player {
     this.word = word.toUpperCase();
     this.wordTheme = wordTheme.toUpperCase();
     this.currentWordState = "|".repeat(word.length);
-    this.maxAttempts = 5;
+    this.maxAttempts = 6;
     this.wrongAttempts = 0;
     this.guessedLetterList = [];
   }
