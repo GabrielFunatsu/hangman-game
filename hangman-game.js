@@ -122,6 +122,8 @@ class GameController extends Match {
   constructor(word, maxWrongAttempts) {
     super(word, maxWrongAttempts);
     this.guess;
+    this.choice;
+    this.restartChoice;
   }
 
   startGame() {
@@ -133,8 +135,8 @@ class GameController extends Match {
       }
 
       if (this.isGameWon() || this.isGameLost()) {
-        const restartChoice = prompt("Deseja jogar novamente? (S/N): ");
-        if (restartChoice.toLowerCase() !== "s") {
+        this.restartChoice = prompt("Deseja jogar novamente? (S/N): ");
+        if (this.restartChoice.toLowerCase() !== "s") {
           console.log("Encerrando Game.");
           break;
         } else {
@@ -171,13 +173,10 @@ class GameController extends Match {
       } else {
         break;
       }
-    } while (
-      !Verify.verifyInvalidInput(this.word) ||
-      !Verify.verifyInvalidInput(this.wordTheme)
-    );
+    } while (true);
     this.currentWordState = "|".repeat(this.word.length);
     this.wrongAttempts = 0;
-    this.guessedLetters = new Set();
+    this.guessedLetters = [];
   }
 
   showMenu() {
@@ -185,9 +184,9 @@ class GameController extends Match {
     console.log("1. Iniciar Game");
     console.log("2. Encerrar Game");
 
-    const choice = prompt("Selecione uma das opções acima (1 or 2): ");
+    this.choice = prompt("Selecione uma das opções acima (1 or 2): ");
 
-    switch (choice) {
+    switch (this.choice) {
       case "1":
         console.log("Iniciando Game...");
         this.startGame();
